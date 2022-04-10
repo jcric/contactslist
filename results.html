@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+    <meta charset="UTF-8">
+    <title>Contacts</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+  
+<body>
+    <h1>Found contacts</h1>
+    <section>
+        <table id='table'>
+            <tr>
+                <th>ID</th>
+                <th>First name</th>
+                <th>Last name</th>
+            </tr>
+  
+            <script>
+                $(document).ready(function () {
+                      $.getJSON("results.json", 
+                            function (data) {
+                        var contact = '';
+  
+                        $.each(data, function (key, value) {
+                            contact += '<tr>';
+                            contact += '<td>' + 
+                                value.id + '</td>';
+  
+                            contact += '<td>' + 
+                                value.fname + '</td>';
+  
+                            contact += '<td>' + 
+                                value.lname + '</td>';
+  
+                            contact += '</tr>';
+                        }); 
+                        $('#table').append(contact);
+                    });
+                });
+            </script>
+        </table>
+    </section>
+    <br>
+    <form action="./">
+        <input type="submit" value="Back" />
+    </form>
+</body>
+</html>
